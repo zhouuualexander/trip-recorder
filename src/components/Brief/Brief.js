@@ -5,6 +5,7 @@ import Typography from '@material-ui/core/Typography';
 import Picker from '../Picker/Picker';
 import Slider from '../Slider/Slider';
 import TextField from '@material-ui/core/TextField';
+import Rating from '../Rating/Rating';
 const brief = (props) => {
     return (
         <React.Fragment>
@@ -17,6 +18,7 @@ const brief = (props) => {
                     </Grid>
                     <Grid item>
                         <Slider />
+                        <Rating />
                     </Grid>
                 </Grid>
                 <Grid container spacing={10}>

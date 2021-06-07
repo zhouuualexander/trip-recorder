@@ -25,7 +25,7 @@ export default function MaterialUIPickers() {
                 <MuiPickersUtilsProvider utils={DateFnsUtils}>
                     <KeyboardDatePicker
                         disableToolbar
-                        variant="dialog"
+                        variant="static"
                         format="MM/dd/yyyy"
                         margin="normal"
                         id="date-picker-inline"
