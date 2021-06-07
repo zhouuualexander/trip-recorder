@@ -2,18 +2,21 @@ import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import React from 'react';
 import Typography from '@material-ui/core/Typography';
-
+import Picker from '../Picker/Picker';
+import Slider from '../Slider/Slider';
+import TextField from '@material-ui/core/TextField';
 const brief = (props) => {
     return (
         <React.Fragment>
             <Container maxWidth="sm">
-                <Typography variant="h2" style={{ fontFamily: 'Kaushan Script', marginTop: '3vh' }}>Banff National Park</Typography>
+                {/* <TextField required id="standard-required" label="Required" defaultValue="Hello World" /> */}
+                <Typography variant="h2" style={{ fontFamily: 'Kaushan Script', marginTop: '3vh', marginBottom: '5vh' }}>Banff National Park</Typography>
                 <Grid container spacing={10}>
                     <Grid item>
-                        <Typography variant="h6" style={{ fontFamily: 'Kaushan Script', marginTop: '10vh' }}>16, May</Typography>
+                        <Picker />
                     </Grid>
                     <Grid item>
-                        <Typography variant="h5" style={{ fontFamily: 'Kaushan Script', marginTop: '10vh' }}>4 Attractions</Typography>
+                        <Slider />
                     </Grid>
                 </Grid>
                 <Grid container spacing={10}>

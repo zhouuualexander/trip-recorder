@@ -9,7 +9,7 @@ class Recorder extends Component {
         return (
             <React.Fragment >
                 <Container maxWidth="lg" align="center">
-                    <Grid container spacing={8}>
+                    <Grid container spacing={4}>
                         <Grid item>
                             <Brief />
                         </Grid>
