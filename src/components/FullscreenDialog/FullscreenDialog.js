@@ -2,7 +2,6 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
-import ListItemText from '@material-ui/core/ListItemText';
 import ListItem from '@material-ui/core/ListItem';
 import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
@@ -15,7 +14,9 @@ import Slide from '@material-ui/core/Slide';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 import Picker from '../Picker/Picker';
 import WeatherButton from '../WeatherButton/WeatherButton';
-
+import PlaceDialog from '../PlaceDialog/PlaceDialog';
+import TextField from '@material-ui/core/TextField';
+import UploadButton from '../UploadButton/UploadButton';
 const useStyles = makeStyles((theme) => ({
     appBar: {
         position: 'relative',
@@ -34,6 +35,19 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 export default function FullScreenDialog(props) {
     const classes = useStyles();
     const [open, setOpen] = React.useState(false);
+    const [trip, setTrip] = React.useState('Trip to be named');
+    const [note, setNote] = React.useState('Notes to be updated');
+    const handleTrip = (trip) => {
+        console.log('Trip');
+        setTrip(trip.target.value);
+    };
+    const handleNotes = (note) => {
+        setNote(note.target.value);
+    };
+    React.useEffect(() => {
+        props.setTrip(trip);
+        props.setNotes(note);
+    }, [trip, note]);
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -65,6 +79,17 @@ export default function FullScreenDialog(props) {
                 </AppBar>
                 <List>
                     <ListItem >
+                        <TextField
+                            autoFocus
+                            margin="dense"
+                            id="name"
+                            label="Trip Name"
+                            type="text"
+                            onChange={handleTrip}
+                            fullWidth
+                        />
+                    </ListItem>
+                    <ListItem >
                         <Picker setDate={props.setDate} />
                     </ListItem>
                     <ListItem>
@@ -72,7 +97,20 @@ export default function FullScreenDialog(props) {
                     </ListItem>
                     <Divider />
                     <ListItem button>
-                        <ListItemText primary="明天可能会继续更新" secondary="Alex Zhou" />
+                        <PlaceDialog addPlace={props.addPlace} />
+                    </ListItem>
+                    <ListItem>
+                        <TextField
+                            id="standard-multiline-flexible"
+                            label="Multiline"
+                            multiline
+                            rowsMax={10}
+                            style={{ width: 500 }}
+                            onChange={handleNotes}
+                        />
+                    </ListItem>
+                    <ListItem button>
+                        <UploadButton upload={props.upload} />
                     </ListItem>
                 </List>
             </Dialog>

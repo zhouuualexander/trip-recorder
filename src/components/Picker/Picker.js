@@ -20,7 +20,8 @@ export default function MaterialUIPickers(props) {
     React.useEffect(() => {
         const day = selectedDate.getDate();
         const month = selectedDate.toLocaleString('en-US', { month: 'long' });
-        const dateString = [month, day].join(' ');
+        const year = selectedDate.getFullYear();
+        const dateString = [year, month, day].join(' ');
         if (typeof props.setDate === 'function') {
             props.setDate(dateString);
         }

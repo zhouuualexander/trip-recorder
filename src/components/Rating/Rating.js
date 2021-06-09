@@ -2,8 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Rating from '@material-ui/lab/Rating';
-import StarBorderIcon from '@material-ui/icons/StarBorder';
-import FavoriteIcon from '@material-ui/icons/Favorite';
 import SentimentVeryDissatisfiedIcon from '@material-ui/icons/SentimentVeryDissatisfied';
 import SentimentDissatisfiedIcon from '@material-ui/icons/SentimentDissatisfied';
 import SentimentSatisfiedIcon from '@material-ui/icons/SentimentSatisfied';
@@ -53,17 +51,26 @@ IconContainer.propTypes = {
     value: PropTypes.number.isRequired,
 };
 
-export default function CustomizedRatings() {
+export default function CustomizedRatings(props) {
+    const [rating, setRating] = React.useState(0);
+    const addRating = (evt, value) => {
+        setRating(value);
+    };
+    React.useEffect(() => {
+        props.addRating(props.place, rating);
+    }, [rating]);
+
+
     return (
         <div>
-            <Box component="fieldset" mb={3} borderColor="transparent">
-                <Typography component="legend">Rating Banff National Park</Typography>
-                <StyledRating
-                    name="customized-color"
+            <Box component="fieldset" mb={3} borderColor="transparent" style={{ marginLeft: '40px' }}>
+                <Typography component="legend">How do you like it?</Typography>
+                <Rating
+                    name="customized-icons"
                     defaultValue={2}
-                    getLabelText={(value) => `${value} Heart${value !== 1 ? 's' : ''}`}
-                    precision={0.5}
-                    icon={<FavoriteIcon fontSize="inherit" />}
+                    getLabelText={(value) => customIcons[value].label}
+                    IconContainerComponent={IconContainer}
+                    onChange={addRating}
                 />
             </Box>
         </div>
