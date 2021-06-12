@@ -1,19 +1,14 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
-import Dialog from '@material-ui/core/Dialog';
-import MuiDialogTitle from '@material-ui/core/DialogTitle';
-import Grid from '@material-ui/core/Grid';
-import MuiDialogContent from '@material-ui/core/DialogContent';
+import { TextField, DialogContentText, Typography, IconButton, Grid, Button, Dialog } from '@material-ui/core';
 import MuiDialogActions from '@material-ui/core/DialogActions';
-import IconButton from '@material-ui/core/IconButton';
+import MuiDialogTitle from '@material-ui/core/DialogTitle';
+import MuiDialogContent from '@material-ui/core/DialogContent';
 import CloseIcon from '@material-ui/icons/Close';
-import Typography from '@material-ui/core/Typography';
 import PlaceIcon from '@material-ui/icons/Place';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import TextField from '@material-ui/core/TextField';
-import Rating from '../Rating/Rating';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
+import Rating from '../Rating/Rating';
+
 const styles = (theme) => ({
     root: {
         margin: 0,
@@ -106,14 +101,12 @@ export default function CustomizedDialogs(props) {
                                 <AddCircleIcon color="action" />
                             </IconButton>
                         </Grid>
-
                     </Grid>
-
                 </DialogContent>
                 <DialogActions>
                     <Button autoFocus onClick={handleClose} color="primary">
                         Save changes
-          </Button>
+            </Button>
                 </DialogActions>
             </Dialog>
         </div>

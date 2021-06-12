@@ -9,14 +9,23 @@ import WbSunnyIcon from '@material-ui/icons/WbSunny';
 import CloudIcon from '@material-ui/icons/Cloud';
 import AcUnitIcon from '@material-ui/icons/AcUnit';
 import BriefRating from '../../components/Rating/BriefRating';
+import axios from '../../axios-recorder';
 
 import FullscreenDialog from '../../components/FullscreenDialog/FullscreenDialog';
 class Recorder extends Component {
+    componentDidMount() {
+        axios.get('https://trip-recorder-ce49c-default-rtdb.firebaseio.com/recorder.json')
+            .then((response) => {
+                this.setState({ recorder: response.data[Object.keys(response.data).reverse()[0]] });
+                console.log(response.data[Object.keys(response.data)[0]]);
+            });
+    }
     clickButton = () => {
         console.log('recorder');
     };
     state = {
         selectedFile: null,
+        recorder: null,
         trip: 'Unknown',
         weather: 'Weather ?',
         date: 'Date ?',
@@ -54,24 +63,55 @@ class Recorder extends Component {
     setNotesHandler = (details) => {
         this.setState({ notes: details });
     };
+
+    saveDataHandler = () => {
+        const data = {
+            weather: this.state.weather,
+            trip: this.state.trip,
+            date: this.state.date,
+            notes: this.state.notes,
+            places: this.state.places,
+            selectedFile: this.state.selectedFile,
+        };
+        axios.post('/recorder.json', data)
+            .then((response) => {
+                // this.setState({ recorder: response.data });
+                console.log(2, response.config.data);
+                axios.get('https://trip-recorder-ce49c-default-rtdb.firebaseio.com/recorder.json')
+                    .then((response) => {
+                        this.setState({ recorder: response.data[Object.keys(response.data).reverse()[0]] });
+                        console.log(response.data[Object.keys(response.data)[0]]);
+                    });
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+        if (this.state.recorder) {
+            console.log(1, this.state.recorder);
+        }
+
+    };
     render() {
         let weather = null;
         let style = { fontSize: 20, marginLeft: '10px' };
-        switch (this.state.weather) {
-            case ('Sunny'):
-                weather = <WbSunnyIcon style={style} />;
-                break;
-            case ('Cloudy'):
-                weather = <CloudIcon style={style} />;
-                break;
-            case ('Snowy'):
-                weather = <AcUnitIcon style={style} />;
-                break;
-            default:
-                weather = 'Weather ?';
+        if (this.state.recorder) {
+            switch (this.state.recorder.weather) {
+                case ('Sunny'):
+                    weather = <WbSunnyIcon style={style} />;
+                    break;
+                case ('Cloudy'):
+                    weather = <CloudIcon style={style} />;
+                    break;
+                case ('Snowy'):
+                    weather = <AcUnitIcon style={style} />;
+                    break;
+                default:
+                    weather = 'Weather ?';
+            }
         }
+
         let rating = null;
-        var x = this.state.places[0].rating;
+        let x = this.state.places[0].rating;
         if (typeof x === 'number') {
             switch (x) {
                 case (x):
@@ -84,17 +124,46 @@ class Recorder extends Component {
         else {
             rating = '';
         }
-
+        let brief = <p>loading...</p>;
+        let detail = <p>loading...</p>;
+        if (this.state.recorder) {
+            let rating = null;
+            let x = this.state.recorder.places[0].rating;
+            if (typeof x === 'number') {
+                switch (x) {
+                    case (x):
+                        rating = <BriefRating value={x} />;
+                        break;
+                    default:
+                        rating = 'Rating ?';
+                }
+            }
+            else {
+                rating = '';
+            }
+            brief = (
+                <Brief weather={this.state.recorder.weather} date={this.state.recorder.date} places={this.state.recorder.places[0].name} rating={rating} trip={this.state.recorder.trip} />
+            );
+            detail = <Detail notes={this.state.recorder.notes} />;
+        }
+        else {
+            brief = (
+                <Brief weather={this.state.weather} date={this.state.date} places={this.state.places[0].name} rating={rating} trip={this.state.trip} />
+            );
+            detail = <Detail notes={this.state.notes} />;
+        }
         return (
             <React.Fragment >
                 <Container maxWidth="lg">
-                    {/* <Typography variant="h2" style={{ backgroundColor: 'black', height: '5vh' }}></Typography> */}
                     <Grid container>
-                        <Grid item xs={6}>
-                            <Brief weather={weather} date={this.state.date} places={this.state.places[0].name} rating={rating} trip={this.state.trip} />
+                        <Grid item xs={12} align="center" >
+                            <Typography variant="h2" style={{ fontFamily: 'Kaushan Script', marginTop: '3vh' }}>My trip record</Typography>
                         </Grid>
                         <Grid item xs={6}>
-                            <Detail notes={this.state.notes} />
+                            {brief}
+                        </Grid>
+                        <Grid item xs={6}>
+                            {detail}
 
                         </Grid>
                         <Grid item xs={12} align="center">
@@ -104,7 +173,8 @@ class Recorder extends Component {
                                 addPlace={this.addPlaceHandler}
                                 setTrip={this.setTripNameHandler}
                                 setNotes={this.setNotesHandler}
-                                upload={this.handleUploadClick} />
+                                upload={this.handleUploadClick}
+                                save={this.saveDataHandler} />
                         </Grid>
                     </Grid>
                     <Copyright />

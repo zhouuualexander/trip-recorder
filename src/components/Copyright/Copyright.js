@@ -1,6 +1,5 @@
 import React from "react";
-import Typography from "@material-ui/core/Typography";
-import Link from "@material-ui/core/Link";
+import { Typography, Link } from "@material-ui/core";
 
 const Copyright = () => {
     return (
@@ -13,6 +12,6 @@ const Copyright = () => {
             {"."}
         </Typography>
     );
-
 };
+
 export default Copyright;

@@ -1,22 +1,14 @@
 import 'date-fns';
 import React from 'react';
 import DateFnsUtils from '@date-io/date-fns';
-import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
-
-import {
-    MuiPickersUtilsProvider,
-    KeyboardDatePicker
-} from '@material-ui/pickers';
+import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
 
 export default function MaterialUIPickers(props) {
-    // The first commit of Material-UI
     const [selectedDate, setSelectedDate] = React.useState(new Date());
-
     const handleDateChange = (date) => {
         setSelectedDate(date);
     };
-
     React.useEffect(() => {
         const day = selectedDate.getDate();
         const month = selectedDate.toLocaleString('en-US', { month: 'long' });
@@ -25,7 +17,6 @@ export default function MaterialUIPickers(props) {
         if (typeof props.setDate === 'function') {
             props.setDate(dateString);
         }
-
     }, [selectedDate]);
     return (
         <Grid container spacing={5}>
@@ -47,6 +38,5 @@ export default function MaterialUIPickers(props) {
                 </MuiPickersUtilsProvider>
             </Grid>
         </Grid>
-
     );
 }

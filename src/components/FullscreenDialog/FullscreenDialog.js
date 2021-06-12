@@ -1,22 +1,8 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
-import Dialog from '@material-ui/core/Dialog';
-import ListItem from '@material-ui/core/ListItem';
-import List from '@material-ui/core/List';
-import Divider from '@material-ui/core/Divider';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
+import { makeStyles, TextField, Slide, Button, Dialog, ListItem, List, Divider, Typography, IconButton, AppBar, Toolbar } from '@material-ui/core';
 import CloseIcon from '@material-ui/icons/Close';
-import Slide from '@material-ui/core/Slide';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
-import Picker from '../Picker/Picker';
-import WeatherButton from '../WeatherButton/WeatherButton';
-import PlaceDialog from '../PlaceDialog/PlaceDialog';
-import TextField from '@material-ui/core/TextField';
-import UploadButton from '../UploadButton/UploadButton';
+import { Picker, WeatherButton, PlaceDialog, UploadButton } from '../../components';
 const useStyles = makeStyles((theme) => ({
     appBar: {
         position: 'relative',
@@ -55,6 +41,7 @@ export default function FullScreenDialog(props) {
 
     const handleClose = () => {
         setOpen(false);
+        props.save();
     };
 
     return (
@@ -71,10 +58,10 @@ export default function FullScreenDialog(props) {
                         </IconButton>
                         <Typography variant="h6" className={classes.title}>
                             Add details
-            </Typography>
+                        </Typography>
                         <Button autoFocus color="inherit" onClick={handleClose}>
                             save
-            </Button>
+                        </Button>
                     </Toolbar>
                 </AppBar>
                 <List>
