@@ -3,7 +3,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import Layout from './components/Layout/Layout';
 import Recorder from './containers/Recorder/Recorder';
 import { createMuiTheme, responsiveFontSizes, ThemeProvider } from '@material-ui/core/styles';
-import { BrowserRouter } from 'react-router-dom';
+import { HashRouter } from 'react-router-dom';
 
 class App extends Component {
 
@@ -11,7 +11,7 @@ class App extends Component {
     let theme = createMuiTheme();
     theme = responsiveFontSizes(theme);
     return (
-      <BrowserRouter>
+      <HashRouter>
         <React.Fragment>
           <CssBaseline />
           <ThemeProvider theme={theme}>
@@ -24,7 +24,7 @@ class App extends Component {
           </ThemeProvider>
 
         </React.Fragment>
-      </BrowserRouter>
+      </HashRouter>
 
     );
   }
