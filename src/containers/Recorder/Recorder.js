@@ -162,7 +162,7 @@ class Recorder extends Component {
         return (
             <React.Fragment >
                 <Container maxWidth="lg">
-                    <Route path='/#/trip-recorder' exact render={() => {
+                    <Route path='/trip-recorder/#' exact render={() => {
                         return (<Grid container>
                             <Grid item xs={12} align="center" >
                                 <Typography variant="h2" style={{ fontFamily: 'Kaushan Script', marginTop: '3vh' }}>My trip record</Typography>
