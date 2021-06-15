@@ -33,8 +33,8 @@ const ToolBar = (props) => {
                             Trip Recorder
                         </Typography>
                         <Link to="/trip-recorder" style={{ textDecoration: "none" }}>  <Tab label="Home" style={{ fontFamily: 'Kaushan Script', fontSize: '20px', textTransform: 'none', color: 'white' }} /></Link>
-                        <Link to="/history_record" style={{ textDecoration: "none" }}> <Tab label="History Record" style={{ fontFamily: 'Kaushan Script', fontSize: '20px', textTransform: 'none', color: 'white' }} /></Link>
-                        <Link to="/about_us" style={{ textDecoration: "none" }}> <Tab label="About Us" style={{ fontFamily: 'Kaushan Script', fontSize: '20px', textTransform: 'none', color: 'white' }} /></Link>
+                        <Link to="/trip-recorder/history_record" style={{ textDecoration: "none" }}> <Tab label="History Record" style={{ fontFamily: 'Kaushan Script', fontSize: '20px', textTransform: 'none', color: 'white' }} /></Link>
+                        <Link to="/trip-recorder/about_us" style={{ textDecoration: "none" }}> <Tab label="About Us" style={{ fontFamily: 'Kaushan Script', fontSize: '20px', textTransform: 'none', color: 'white' }} /></Link>
                     </Toolbar>
                 </AppBar>
             </div>

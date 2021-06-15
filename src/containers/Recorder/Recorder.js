@@ -187,10 +187,10 @@ class Recorder extends Component {
 
                         );
                     }} />
-                    <Route path="/history_record" exact render={() => (
+                    <Route path="/trip-recorder/history_record" exact render={() => (
                         <HistoryRecord historyRecord={this.state.historyRecord} />
                     )} />
-                    <Route path="/about_us" exact component={AboutUs} />
+                    <Route path="/trip-recorder/about_us" exact component={AboutUs} />
 
                     <Copyright />
                 </Container>
