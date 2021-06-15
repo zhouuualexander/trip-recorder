@@ -14,7 +14,7 @@ const useStyles = makeStyles({
     },
     typography: {
         fontFamily: 'Kaushan Script',
-        flexGrow: 1
+        flexGrow: '1'
     }
 });
 const ToolBar = (props) => {
@@ -29,9 +29,11 @@ const ToolBar = (props) => {
             <div className={classes.root}>
                 <AppBar position="relative" elevation={0} className={classes.root}>
                     <Toolbar>
-                        <Typography variant="h4" color="white" noWrap className={classes.typography} >
+
+                        <Typography variant="h4" color="white" noWrap className={classes.typography} href="/" >
                             Trip Recorder
                         </Typography>
+
                         <Link to="/" style={{ textDecoration: "none" }}>  <Tab label="Home" style={{ fontFamily: 'Kaushan Script', fontSize: '20px', textTransform: 'none', color: 'white' }} /></Link>
                         <Link to="/trip-recorder/history_record" style={{ textDecoration: "none" }}> <Tab label="History Record" style={{ fontFamily: 'Kaushan Script', fontSize: '20px', textTransform: 'none', color: 'white' }} /></Link>
                         <Link to="/trip-recorder/about_us" style={{ textDecoration: "none" }}> <Tab label="About Us" style={{ fontFamily: 'Kaushan Script', fontSize: '20px', textTransform: 'none', color: 'white' }} /></Link>

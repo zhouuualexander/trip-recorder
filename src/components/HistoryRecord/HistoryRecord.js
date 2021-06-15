@@ -2,10 +2,10 @@ import React from 'react';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
-import { FixedSizeList } from 'react-window';
 import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
+import Dialog from '../HistoryRecord/HistoryRecordDialog/HistoryRecordDialog';
+
 const useStyles = makeStyles((theme) => ({
     root: {
         width: '100%',
@@ -18,11 +18,7 @@ const HistoryRecord = (props) => {
 
     const classes = useStyles();
     if (props.historyRecord) {
-        const trips = props.historyRecord.map((record) => {
-            return (
-                record.trip
-            );
-        });
+
         return (
             <React.Fragment>
                 <Typography variant="h3" align="center" style={{
@@ -37,14 +33,14 @@ const HistoryRecord = (props) => {
                         overflow: 'auto',
                         maxHeight: '70vh',
                     }}>
-                        {trips.map((trip) => {
+                        {props.historyRecord.map((record) => {
                             return (
-                                <div> <ListItem button>
+                                <div> <ListItem onClick={() => console.log('You just clicked me')}>
                                     <Typography variant="h6" style={{
                                         fontFamily: 'Kaushan Script',
-
-                                    }} >{trip}</Typography>
-
+                                        flexGrow: '1'
+                                    }} >{record.trip}</Typography>
+                                    <Dialog name={record.trip} date={record.date} notes={record.notes} places={record.places} weather={record.weather} />
                                 </ListItem>
                                     <Divider /></div>
 
