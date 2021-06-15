@@ -44,16 +44,20 @@ export default function FullScreenDialog(props) {
         props.save();
     };
 
+    const handleButtonClose = () => {
+        setOpen(false);
+    };
+
     return (
         <div>
             <IconButton aria-label="add" >
                 <AddCircleIcon color="action" onClick={handleClickOpen} />
             </IconButton>
 
-            <Dialog fullScreen open={open} onClose={handleClose} TransitionComponent={Transition}>
+            <Dialog open={open} TransitionComponent={Transition}>
                 <AppBar className={classes.appBar}>
                     <Toolbar>
-                        <IconButton edge="start" color="inherit" onClick={handleClose} aria-label="close">
+                        <IconButton edge="start" color="inherit" onClick={handleButtonClose} aria-label="close">
                             <CloseIcon />
                         </IconButton>
                         <Typography variant="h6" className={classes.title}>

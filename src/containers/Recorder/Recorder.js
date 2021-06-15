@@ -10,20 +10,28 @@ import CloudIcon from '@material-ui/icons/Cloud';
 import AcUnitIcon from '@material-ui/icons/AcUnit';
 import BriefRating from '../../components/Rating/BriefRating';
 import axios from '../../axios-recorder';
+import AboutUs from '../../components/AboutUs/AboutUs';
+import HistoryRecord from '../../components/HistoryRecord/HistoryRecord';
+import { Route } from 'react-router-dom';
 
 import FullscreenDialog from '../../components/FullscreenDialog/FullscreenDialog';
 class Recorder extends Component {
     componentDidMount() {
         axios.get('https://trip-recorder-ce49c-default-rtdb.firebaseio.com/recorder.json')
             .then((response) => {
-                this.setState({ recorder: response.data[Object.keys(response.data).reverse()[0]] });
+                this.setState({
+                    recorder: response.data[Object.keys(response.data).reverse()[0]],
+                    historyRecord: Object.values(response.data)
+                });
                 console.log(response.data[Object.keys(response.data)[0]]);
+                console.log(Object.values(response.data));
             });
     }
     clickButton = () => {
         console.log('recorder');
     };
     state = {
+        historyRecord: null,
         selectedFile: null,
         recorder: null,
         trip: 'Unknown',
@@ -86,9 +94,7 @@ class Recorder extends Component {
             .catch((error) => {
                 console.log(error);
             });
-        if (this.state.recorder) {
-            console.log(1, this.state.recorder);
-        }
+
 
     };
     render() {
@@ -151,32 +157,41 @@ class Recorder extends Component {
                 <Brief weather={this.state.weather} date={this.state.date} places={this.state.places[0].name} rating={rating} trip={this.state.trip} />
             );
             detail = <Detail notes={this.state.notes} />;
+
         }
         return (
             <React.Fragment >
                 <Container maxWidth="lg">
-                    <Grid container>
-                        <Grid item xs={12} align="center" >
-                            <Typography variant="h2" style={{ fontFamily: 'Kaushan Script', marginTop: '3vh' }}>My trip record</Typography>
+                    <Route path='/' exact render={() => {
+                        return (<Grid container>
+                            <Grid item xs={12} align="center" >
+                                <Typography variant="h2" style={{ fontFamily: 'Kaushan Script', marginTop: '3vh' }}>My trip record</Typography>
+                            </Grid>
+                            <Grid item xs={6}>
+                                {brief}
+                            </Grid>
+                            <Grid item xs={6}>
+                                {detail}
+                            </Grid>
+                            <Grid item xs={12} align="center">
+                                <FullscreenDialog
+                                    setWeather={this.setWeatherHandler}
+                                    setDate={this.setDateHandler}
+                                    addPlace={this.addPlaceHandler}
+                                    setTrip={this.setTripNameHandler}
+                                    setNotes={this.setNotesHandler}
+                                    upload={this.handleUploadClick}
+                                    save={this.saveDataHandler} />
+                            </Grid>
                         </Grid>
-                        <Grid item xs={6}>
-                            {brief}
-                        </Grid>
-                        <Grid item xs={6}>
-                            {detail}
 
-                        </Grid>
-                        <Grid item xs={12} align="center">
-                            <FullscreenDialog
-                                setWeather={this.setWeatherHandler}
-                                setDate={this.setDateHandler}
-                                addPlace={this.addPlaceHandler}
-                                setTrip={this.setTripNameHandler}
-                                setNotes={this.setNotesHandler}
-                                upload={this.handleUploadClick}
-                                save={this.saveDataHandler} />
-                        </Grid>
-                    </Grid>
+                        );
+                    }} />
+                    <Route path="/history_record" exact render={() => (
+                        <HistoryRecord historyRecord={this.state.historyRecord} />
+                    )} />
+                    <Route path="/about_us" exact component={AboutUs} />
+
                     <Copyright />
                 </Container>
 

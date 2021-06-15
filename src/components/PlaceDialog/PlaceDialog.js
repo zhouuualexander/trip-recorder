@@ -73,10 +73,10 @@ export default function CustomizedDialogs(props) {
             <IconButton variant="outlined" color="primary" onClick={handleClickOpen}>
                 <PlaceIcon />
             </IconButton>
-            <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}>
+            <Dialog aria-labelledby="customized-dialog-title" open={open}>
                 <DialogTitle id="customized-dialog-title" >
                     Where did we go?
-        </DialogTitle>
+                </DialogTitle>
                 <DialogContent dividers>
                     <DialogContentText>
                         Please add places and rate them as well.
@@ -106,7 +106,7 @@ export default function CustomizedDialogs(props) {
                 <DialogActions>
                     <Button autoFocus onClick={handleClose} color="primary">
                         Save changes
-            </Button>
+                    </Button>
                 </DialogActions>
             </Dialog>
         </div>

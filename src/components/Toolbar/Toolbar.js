@@ -3,12 +3,13 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
-import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
+import { Link } from 'react-router-dom';
+
 
 const useStyles = makeStyles({
     root: {
-        background: 'linear-gradient(to right, #74ebd5, #acb6e5)',
+        background: 'primary',
         height: '6vh',
     },
     typography: {
@@ -17,24 +18,27 @@ const useStyles = makeStyles({
     }
 });
 const ToolBar = (props) => {
+    const [value, setValue] = React.useState(0);
+
+    const handleChange = (event, newValue) => {
+        setValue(newValue);
+    };
     const classes = useStyles();
     return (
         <React.Fragment>
             <div className={classes.root}>
                 <AppBar position="relative" elevation={0} className={classes.root}>
                     <Toolbar>
-                        <Typography variant="h4" color="inherit" noWrap className={classes.typography}  >
+                        <Typography variant="h4" color="white" noWrap className={classes.typography} >
                             Trip Recorder
                         </Typography>
-                        <Tabs aria-label="simple tabs example" >
-                            <Tab label="Home" style={{ fontFamily: 'Kaushan Script', fontSize: '20px' }} />
-                            <Tab label="Record" style={{ fontFamily: 'Kaushan Script', fontSize: '20px' }} />
-                            <Tab label="About Us" style={{ fontFamily: 'Kaushan Script', fontSize: '20px' }} />
-                        </Tabs>
+                        <Link to="/" style={{ textDecoration: "none" }}>  <Tab label="Home" style={{ fontFamily: 'Kaushan Script', fontSize: '20px', textTransform: 'none', color: 'white' }} /></Link>
+                        <Link to="/history_record" style={{ textDecoration: "none" }}> <Tab label="History Record" style={{ fontFamily: 'Kaushan Script', fontSize: '20px', textTransform: 'none', color: 'white' }} /></Link>
+                        <Link to="/about_us" style={{ textDecoration: "none" }}> <Tab label="About Us" style={{ fontFamily: 'Kaushan Script', fontSize: '20px', textTransform: 'none', color: 'white' }} /></Link>
                     </Toolbar>
                 </AppBar>
             </div>
-        </React.Fragment>
+        </React.Fragment >
     );
 };
 
