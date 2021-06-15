@@ -1,23 +1,23 @@
 {
   "files": {
     "main.css": "/trip-recorder/static/css/main.4a4137e4.chunk.css",
-    "main.js": "/trip-recorder/static/js/main.8af7c69e.chunk.js",
-    "main.js.map": "/trip-recorder/static/js/main.8af7c69e.chunk.js.map",
+    "main.js": "/trip-recorder/static/js/main.85c1ff0a.chunk.js",
+    "main.js.map": "/trip-recorder/static/js/main.85c1ff0a.chunk.js.map",
     "runtime-main.js": "/trip-recorder/static/js/runtime-main.dff82d37.js",
     "runtime-main.js.map": "/trip-recorder/static/js/runtime-main.dff82d37.js.map",
-    "static/js/2.c48820ca.chunk.js": "/trip-recorder/static/js/2.c48820ca.chunk.js",
-    "static/js/2.c48820ca.chunk.js.map": "/trip-recorder/static/js/2.c48820ca.chunk.js.map",
+    "static/js/2.93dacd35.chunk.js": "/trip-recorder/static/js/2.93dacd35.chunk.js",
+    "static/js/2.93dacd35.chunk.js.map": "/trip-recorder/static/js/2.93dacd35.chunk.js.map",
     "static/js/3.64a2a0f4.chunk.js": "/trip-recorder/static/js/3.64a2a0f4.chunk.js",
     "static/js/3.64a2a0f4.chunk.js.map": "/trip-recorder/static/js/3.64a2a0f4.chunk.js.map",
     "index.html": "/trip-recorder/index.html",
     "static/css/main.4a4137e4.chunk.css.map": "/trip-recorder/static/css/main.4a4137e4.chunk.css.map",
-    "static/js/2.c48820ca.chunk.js.LICENSE.txt": "/trip-recorder/static/js/2.c48820ca.chunk.js.LICENSE.txt",
+    "static/js/2.93dacd35.chunk.js.LICENSE.txt": "/trip-recorder/static/js/2.93dacd35.chunk.js.LICENSE.txt",
     "static/media/banff.bb14011c.jpeg": "/trip-recorder/static/media/banff.bb14011c.jpeg"
   },
   "entrypoints": [
     "static/js/runtime-main.dff82d37.js",
-    "static/js/2.c48820ca.chunk.js",
+    "static/js/2.93dacd35.chunk.js",
     "static/css/main.4a4137e4.chunk.css",
-    "static/js/main.8af7c69e.chunk.js"
+    "static/js/main.85c1ff0a.chunk.js"
   ]
 }
